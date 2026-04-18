@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>SpicePot Analytics | Restaurant Intelligence Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div class="glass-panel" id="appRoot">
+    <!-- LOGIN SECTION -->
+    <div id="loginSection" class="login-container">
+        <div class="login-card">
+            <h1><i class="fas fa-utensils"></i> SpicePot</h1>
+            <div class="sub">Restaurant Intelligence · Executive Access</div>
+            <div class="input-group">
+                <label><i class="fas fa-envelope"></i> Email / Username</label>
+                <input type="text" id="loginUsername" placeholder="admin@spicepot.com" value="demo@spicepot.com">
+            </div>
+            <div class="input-group">
+                <label><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="loginPassword" placeholder="••••••" value="spice2024">
+            </div>
+            <button class="login-btn" id="doLoginBtn"><i class="fas fa-sign-in-alt"></i> Sign In</button>
+            <div id="loginErrorMsg" class="error-msg" style="display: none;">Invalid credentials. Use demo@spicepot.com / spice2024</div>
+            <div style="margin-top: 1.5rem; font-size: 0.7rem; text-align: center; color: #5b6e8c;">Demo: demo@spicepot.com / spice2024</div>
+        </div>
+    </div>
+
+    <!-- DASHBOARD SECTION (hidden initially) -->
+    <div id="dashboardSection" class="dashboard-container">
+        <div class="dashboard-header">
+            <div class="logo-area">
+                <h2><i class="fas fa-chart-line"></i> SpicePot Command Center</h2>
+                <p>Live analytics · Order insights · Customer intelligence</p>
+            </div>
+            <div class="user-info">
+                <span><i class="fas fa-user-circle"></i> <span id="activeUser">Restaurant Manager</span></span>
+                <button class="logout-btn" id="logoutBtn"><i class="fas fa-power-off"></i> Exit</button>
+            </div>
+        </div>
+
+        <!-- KPI metrics (dynamic from dataset) -->
+        <div class="kpi-grid" id="kpiContainer"></div>
+
+        <!-- CHARTS SECTION -->
+        <div class="charts-row">
+            <div class="chart-card">
+                <h3><i class="fas fa-chart-pie"></i> Orders by Category</h3>
+                <canvas id="categoryChart" width="400" height="220" style="max-height:220px"></canvas>
+            </div>
+            <div class="chart-card">
+                <h3><i class="fas fa-star"></i> Avg Rating by Outlet City</h3>
+                <canvas id="ratingChart" width="400" height="220" style="max-height:220px"></canvas>
+            </div>
+        </div>
+
+        <!-- IBM COGNOS IFRAME EMBED (Professional BI integration) -->
+        <div class="iframe-container">
+            <iframe 
+                src="https://ap2.ca.analytics.ibm.com/bi/?perspective=dashboard&amp;pathRef=.my_folders%2Fquery%2B5&amp;closeWindowOnLastView=true&amp;ui_appbar=false&amp;ui_navbar=false&amp;shareMode=embedded&amp;action=view&amp;mode=dashboard&amp;subView=model0000019d9c090085_00000002&amp;nav_filter=true" 
+                title="IBM Cognos Dashboard - SpicePot Analytics"
+                frameborder="0"
+                allow="encrypted-media"
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- Recent Completed Orders Table (sample from excel dataset) -->
+        <div class="recent-orders">
+            <h3><i class="fas fa-receipt"></i> Recent Completed Orders & Feedback</h3>
+            <div style="overflow-x: auto;">
+                <table id="ordersTable">
+                    <thead>
+                        <tr><th>Order ID</th><th>Outlet</th><th>Item</th><th>Total Bill (₹)</th><th>Rating</th><th>Feedback</th></tr>
+                    </thead>
+                    <tbody id="ordersTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+        <footer>© 2025 SpicePot Analytics — Real data from operational orders | IBM Cognos embedded</footer>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
